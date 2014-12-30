@@ -1,0 +1,5 @@
+include curve/ed25519/*.h
+include curve/curve25519-donna.h
+include curve/ed25519/additions/*.h
+include curve/ed22519/nacl_sha512/*.h
+include curve/ed25519/nacl_includes/*.h

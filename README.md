@@ -16,14 +16,16 @@ signature = curve.calculateSignature(randm64, private_key, message)
 verified = curve.verifySignature(public_key, message, signature) == 0
 ```
 
-### Installation
+# Installation
+
+## Linux
 
 You need to have python headers installed, usually through installing package called python-dev, then as superuser run:
 ```
 python setup.py install
 ```
 
-#### Windows
+## Windows
 
  - Install [mingw](http://www.mingw.org/) compiler
  - Add mingw to your PATH

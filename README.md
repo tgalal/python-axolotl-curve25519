@@ -25,10 +25,10 @@ python setup.py install
 
 #### Windows
 
- - Install (http://www.mingw.org/)[mingw] compiler
+ - Install [mingw](http://www.mingw.org/) compiler
  - Add mingw to your PATH
  - Install gcc: ```mingw-get.exe install gcc```
- - Install zlib (http://www.zlib.net/)[zlib]
+ - Install zlib [zlib](http://www.zlib.net/)
  - ```python setup.py install```
 
 

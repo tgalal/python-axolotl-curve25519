@@ -27,6 +27,13 @@ python setup.py install
 
  - Install (http://www.mingw.org/)[mingw] compiler
  - Add mingw to your PATH
+ - In PYTHONPATH\Lib\distutils create a file called distutils.cfg and add these lines:
+ 
+```
+[build]
+compiler=mingw32
+```
+
  - Install gcc: ```mingw-get.exe install gcc```
  - Install zlib (http://www.zlib.net/)[zlib]
  - ```python setup.py install```

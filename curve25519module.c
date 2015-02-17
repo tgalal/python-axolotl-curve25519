@@ -47,7 +47,8 @@ calculateSignature(PyObject *self, PyObject *args)
         return NULL;
     }
 
-   curve25519_sign(signature, privatekey, message, messagelen, random);
+    curve25519_sign((unsigned char *)signature, (unsigned char *)privatekey, 
+                    (unsigned char *)message, messagelen, (unsigned char *)random);
 
    return PyBytes_FromStringAndSize((char *)signature, 64);
 }
@@ -73,7 +74,8 @@ verifySignature(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    int result = curve25519_verify(signature, publickey, message, messagelen);
+    int result = curve25519_verify((unsigned char *)signature, (unsigned char *)publickey, 
+                                   (unsigned char *)message, messagelen);
 
     return Py_BuildValue("i", result);
 

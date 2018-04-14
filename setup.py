@@ -18,7 +18,7 @@ module_curve = Extension('axolotl_curve25519',
                     )
 setup(
     name='python-axolotl-curve25519',
-    version="0.1",
+    version="0.4.1",
     license='GPLv3 License',
     author='Tarek Galal',
     ext_modules = [module_curve],

@@ -1,3 +1,4 @@
+include curve/curve25519-donna.h
 include curve/ed25519/api.h
 include curve/ed25519/base.h
 include curve/ed25519/base2.h
@@ -14,11 +15,16 @@ include curve/ed25519/pow22523.h
 include curve/ed25519/pow225521.h
 include curve/ed25519/sc.h
 include curve/ed25519/sqrtm1.h
-include curve/curve25519-donna.h
+
 include curve/ed25519/additions/compare.h
+include curve/ed25519/additions/crypto_additions.h
 include curve/ed25519/additions/crypto_hash_sha512.h
 include curve/ed25519/additions/curve_sigs.h
+include curve/ed25519/additions/keygen.h
+include curve/ed25519/additions/utility.h
+include curve/ed25519/additions/xeddsa.h
 include curve/ed25519/additions/zeroize.h
+
 include curve/ed25519/nacl_includes/crypto_int32.h
 include curve/ed25519/nacl_includes/crypto_int64.h
 include curve/ed25519/nacl_includes/crypto_sign.h

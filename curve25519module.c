@@ -47,8 +47,10 @@ calculateSignature(PyObject *self, PyObject *args)
         return NULL;
     }
 
+    Py_BEGIN_ALLOW_THREADS
     curve25519_sign((unsigned char *)signature, (unsigned char *)privatekey, 
                     (unsigned char *)message, messagelen, (unsigned char *)random);
+    Py_END_ALLOW_THREADS
 
    return PyBytes_FromStringAndSize((char *)signature, 64);
 }
@@ -59,6 +61,7 @@ verifySignature(PyObject *self, PyObject *args)
     const char *publickey;
     const char *message;
     const char *signature;
+    int result;
 
     Py_ssize_t publickeylen, messagelen, signaturelen;
 
@@ -74,11 +77,12 @@ verifySignature(PyObject *self, PyObject *args)
         return NULL;
     }
 
-    int result = curve25519_verify((unsigned char *)signature, (unsigned char *)publickey, 
+    Py_BEGIN_ALLOW_THREADS
+    result = curve25519_verify((unsigned char *)signature, (unsigned char *)publickey, 
                                    (unsigned char *)message, messagelen);
+    Py_END_ALLOW_THREADS
 
     return Py_BuildValue("i", result);
-
 }
 
 static PyObject *
@@ -115,7 +119,9 @@ generatePublicKey(PyObject *self, PyObject *args)
         PyErr_SetString(PyExc_ValueError, "input must be 32-byte string");
         return NULL;
     }
+    Py_BEGIN_ALLOW_THREADS
     curve25519_donna(mypublic, private, basepoint);
+    Py_END_ALLOW_THREADS
     return PyBytes_FromStringAndSize((char *)mypublic, 32);
 }
 
@@ -136,7 +142,9 @@ calculateAgreement(PyObject *self, PyObject *args)
         PyErr_SetString(PyExc_ValueError, "input must be 32-byte string");
         return NULL;
     }
+    Py_BEGIN_ALLOW_THREADS
     curve25519_donna(shared_key, myprivate, theirpublic);
+    Py_END_ALLOW_THREADS
     return PyBytes_FromStringAndSize((char *)shared_key, 32);
 }
 
@@ -158,7 +166,7 @@ curve25519_functions[] = {
         PyModuleDef_HEAD_INIT,
         "axolotl_curve25519",
         NULL,
-        NULL,
+        -1,
         curve25519_functions,
     };
 
